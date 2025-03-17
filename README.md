@@ -1,1 +1,1 @@
-# melodykimball/gsu-react-template
+# melodykimball/gsu-mui-react-template
