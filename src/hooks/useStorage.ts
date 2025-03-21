@@ -1,6 +1,6 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 
-export default function useStorage<T>(
+export function useStorage<T>(
   key: string,
   initialValue: (() => T) | T,
   storage: Storage = window.localStorage
@@ -19,6 +19,8 @@ export default function useStorage<T>(
     () => storage.removeItem(key),
   ];
 }
+
+export default useStorage;
 
 function getStorageValue<T>(storage: Storage, key: string): T | null {
   try {
