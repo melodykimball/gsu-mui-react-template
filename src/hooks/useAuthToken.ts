@@ -1,24 +1,12 @@
-import { createContext, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { type AuthToken, defaultAuthToken, AuthTokenContext } from "../contexts/AuthTokenContext";
 import useStorage from "./useStorage";
 
-export interface AuthToken {
-  token: string;
-  expiresOn: number;
-  isActive?: boolean | undefined;
-}
-
-const defaultAuthToken = {
-  token: "",
-  expiresOn: 0,
-} as AuthToken;
-
-export const AuthContext = createContext(defaultAuthToken);
-
-export function useAuthTokenContext(): AuthToken {
-  return useContext(AuthContext);
-}
-
 export function useAuthToken(): AuthToken {
+  return useContext(AuthTokenContext);
+}
+
+export function useGetAuthToken(): AuthToken {
   const [authToken, setAuthToken] = useStorage<AuthToken>("authToken", defaultAuthToken);
   useEffect(() => updateAuthToken(authToken, setAuthToken), [authToken, setAuthToken]);
 
@@ -27,6 +15,8 @@ export function useAuthToken(): AuthToken {
     isActive: isActive(authToken),
   };
 }
+
+export default useAuthToken;
 
 function isActive(authToken: AuthToken): boolean | undefined {
   switch (true) {
