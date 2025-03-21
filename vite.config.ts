@@ -18,7 +18,6 @@ export default defineConfig({
       external: [
         "@emotion/react",
         "@emotion/styled",
-        "@fontsource/roboto",
         "@mui/icons-material",
         "@mui/material/Box",
         "@mui/material/Toolbar",
@@ -34,9 +33,11 @@ export default defineConfig({
         "@mui/material/MenuItem",
         "@mui/material/Select",
         "@mui/material/styles",
+        "@tanstack/react-query",
         "react",
         "react/jsx-runtime",
         "react-dom",
+        "react-router",
       ],
       input: Object.fromEntries(
         glob
