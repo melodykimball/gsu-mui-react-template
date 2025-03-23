@@ -5,6 +5,7 @@ import { glob } from "glob";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
+import copy from "rollup-plugin-copy-assets";
 
 export default defineConfig({
   plugins: [react(), libInjectCss(), dts({ include: ["src"] })],
@@ -19,20 +20,23 @@ export default defineConfig({
         "@emotion/react",
         "@emotion/styled",
         "@mui/icons-material",
-        "@mui/material/Box",
-        "@mui/material/Toolbar",
-        "@mui/material/Divider",
-        "@mui/material/Stack",
+        "@mui/material/Alert",
+        "@mui/material/AlertTitle",
         "@mui/material/AppBar",
-        "@mui/material/Typography",
+        "@mui/material/Box",
+        "@mui/material/Button",
         "@mui/material/colors/grey",
         "@mui/material/CssBaseline",
-        "@mui/material/Button",
+        "@mui/material/Divider",
         "@mui/material/FormControl",
         "@mui/material/InputLabel",
+        "@mui/material/Link",
         "@mui/material/MenuItem",
         "@mui/material/Select",
+        "@mui/material/Stack",
         "@mui/material/styles",
+        "@mui/material/Toolbar",
+        "@mui/material/Typography",
         "@tanstack/react-query",
         "react",
         "react/jsx-runtime",
@@ -41,7 +45,7 @@ export default defineConfig({
       ],
       input: Object.fromEntries(
         glob
-          .sync("src/**/*.{ts,tsx}", {
+          .sync(["src/**/*.{ts,tsx,bmp,gif,png,jpg,svg}"], {
             ignore: ["src/**/*.d.ts"],
           })
           .map((file) => [
@@ -55,8 +59,22 @@ export default defineConfig({
       ),
       output: {
         assetFileNames: "assets/[name][extname]",
-        entryFileNames: "[name].js",
+        entryFileNames: function ({ facadeModuleId, name }) {
+          const extname = facadeModuleId?.split(".")?.pop();
+          if (extname === "ts" || extname === "tsx") {
+            return `${name}.js`;
+          }
+          if (typeof extname === "string") {
+            return `${name}.${extname}`;
+          }
+          return name;
+        },
       },
+      plugins: [
+        copy({
+          assets: ["assets"],
+        }),
+      ],
     },
   },
 });

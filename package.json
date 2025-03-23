@@ -2,12 +2,13 @@
   "name": "@gastate/mui-react-template",
   "author": "Melody Kimball",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "./dist"
   ],
   "repository": {
     "type": "git",
@@ -16,6 +17,16 @@
   "sideEffects": [
     "**/*.css"
   ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./components": "./dist/components/index.js",
+    "./contexts": "./dist/contexts/index.js",
+    "./hooks": "./dist/hooks/index.js",
+    "./pages": "./dist/pages/index.js",
+    "./providers": "./dist/providers/index.js",
+    "./types": "./dist/index.d.ts",
+    "./package.json": "./package.json"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -49,6 +60,7 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "glob": "^11.0.1",
     "globals": "^15.15.0",
+    "rollup-plugin-copy-assets": "^2.0.3",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0",
