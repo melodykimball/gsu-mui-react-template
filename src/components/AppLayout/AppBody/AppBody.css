@@ -1,0 +1,15 @@
+main.content {
+  margin: 16px;
+  margin-top: 64px;
+  min-height: 100%;
+}
+@media (min-width: 640px) and (max-width: 991px) {
+  main.content {
+    margin-top: 80px;
+  }
+}
+@media (min-width: 992px) {
+  main.content {
+    margin-top: 112px;
+  }
+}

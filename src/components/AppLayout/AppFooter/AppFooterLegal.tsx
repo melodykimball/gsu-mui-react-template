@@ -1,11 +1,11 @@
 import Stack, { type StackProps } from "@mui/material/Stack";
 
-export type AppFooterBottomProps = Omit<StackProps, "children">;
+export type AppFooterLegalProps = Omit<StackProps, "children">;
 
-export function AppFooterBottom(props: AppFooterBottomProps) {
+export function AppFooterLegal(props: AppFooterLegalProps) {
   const year = new Date().getFullYear();
   return (
-    <Stack direction="row" spacing={2} {...props}>
+    <Stack className="footer-legal" direction={{ xs: "column", sm: "row" }} spacing={2} {...props}>
       <a href="https://www.gsu.edu/contact-georgia-state/" target="_blank" rel="noreferrer">
         Contact Georgia State
       </a>
@@ -29,4 +29,4 @@ export function AppFooterBottom(props: AppFooterBottomProps) {
   );
 }
 
-export default AppFooterBottom;
+export default AppFooterLegal;

@@ -1,10 +1,10 @@
 import Stack, { type StackProps } from "@mui/material/Stack";
 
-export type AppFooterCenterProps = Omit<StackProps, "children">;
+export type AppFooterAddressProps = Omit<StackProps, "children">;
 
-export function AppFooterCenter(props: AppFooterCenterProps) {
+export function AppFooterAddress(props: AppFooterAddressProps) {
   return (
-    <Stack direction="row" spacing={2} {...props}>
+    <Stack className="footer-address" direction="row" spacing={2} {...props}>
       <span>Georgia State University</span>
       <span>
         <a
@@ -22,4 +22,4 @@ export function AppFooterCenter(props: AppFooterCenterProps) {
   );
 }
 
-export default AppFooterCenter;
+export default AppFooterAddress;

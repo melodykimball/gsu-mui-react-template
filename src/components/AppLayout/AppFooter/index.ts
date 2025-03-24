@@ -1,5 +1,5 @@
 export * from "./AppFooter";
-export * from "./AppFooterBottom";
-export * from "./AppFooterCenter";
-export * from "./AppFooterTop";
+export * from "./AppFooterAddress";
+export * from "./AppFooterLegal";
+export * from "./AppFooterLogo";
 export { default } from "./AppFooter";

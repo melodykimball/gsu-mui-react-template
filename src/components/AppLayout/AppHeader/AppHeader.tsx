@@ -3,52 +3,19 @@ import AppBar, { type AppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography, { type TypographyProps } from "@mui/material/Typography";
 import logo from "../../../assets/logo.png";
+import "./AppHeader.css";
 
+export type AppHeaderBarProps = Omit<AppBarProps, "children">;
+export type AppHeaderImgProps = DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
+export type AppHeaderTypographyProps = Omit<TypographyProps, "children">;
 export type AppHeaderProps = PropsWithChildren<{
-  appBar?: Omit<AppBarProps, "children"> | undefined;
-  img?: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> | undefined;
-  typography?: Omit<TypographyProps, "children"> | undefined;
+  appBar?: AppHeaderBarProps | undefined;
+  img?: AppHeaderImgProps | undefined;
+  typography?: AppHeaderTypographyProps | undefined;
 }>;
 
 export function AppHeader(props: AppHeaderProps) {
-  const appBarProps: AppBarProps = {
-    component: "header",
-    role: "banner",
-    ...props.appBar,
-  };
-  const imgProps: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> = {
-    width: 64,
-    height: 64,
-    src: logo,
-    alt: "Georgia State University",
-    ...props.img,
-  };
-  const typographyProps: TypographyProps = {
-    component: "h1",
-    variant: "h6",
-    color: "inherit",
-    noWrap: true,
-    ...props.typography,
-  };
-
-  appBarProps.sx = {
-    backgroundColor: "#0039a6",
-    ...appBarProps.sx,
-  };
-  imgProps.style = {
-    width: "64px",
-    height: "64px",
-    maxHeight: "64px",
-    marginLeft: "16px",
-    marginRight: "16px",
-    objectFit: "contain",
-    ...imgProps.style,
-  };
-  typographyProps.sx = {
-    flexGrow: 1,
-    ...typographyProps.sx,
-  };
-
+  const { appBarProps, imgProps, typographyProps } = buildProps(props);
   return (
     <AppBar {...appBarProps}>
       <Toolbar>
@@ -60,3 +27,32 @@ export function AppHeader(props: AppHeaderProps) {
 }
 
 export default AppHeader;
+
+function buildProps(props: AppHeaderProps) {
+  const appBarProps: AppHeaderBarProps = {
+    component: "header",
+    role: "banner",
+    className: "site-header",
+    ...props.appBar,
+  };
+  const imgProps: AppHeaderImgProps = {
+    src: logo,
+    alt: "Georgia State University",
+    className: "header-logo",
+    ...props.img,
+  };
+  const typographyProps: AppHeaderTypographyProps = {
+    component: "h1",
+    variant: "h6",
+    color: "inherit",
+    noWrap: true,
+    className: "header-title",
+    ...props.typography,
+  };
+
+  return {
+    appBarProps,
+    imgProps,
+    typographyProps,
+  };
+}

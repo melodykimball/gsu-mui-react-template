@@ -11,7 +11,7 @@ export function ContactHelpDesk() {
       >
         Contact the GSU Help Desk
       </Link>
-      if you are seeing this page by mistake
+      &nbsp;if you are seeing this page by mistake
     </p>
   );
 }
