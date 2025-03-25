@@ -6,7 +6,7 @@ import AppFooterAddress from "./AppFooterAddress";
 import AppFooterLegal from "./AppFooterLegal";
 import AppFooterLogo from "./AppFooterLogo";
 
-export default function AppFooter(props: AppFooterProps) {
+export function AppFooter(props: AppFooterProps) {
   const toolbarProps: AppFooterProps["toolbar"] = {
     component: "footer",
     role: "contentinfo",
@@ -36,3 +36,5 @@ export default function AppFooter(props: AppFooterProps) {
     </Toolbar>
   );
 }
+
+export default AppFooter;

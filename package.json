@@ -14,16 +14,19 @@
     "type": "git",
     "url": "https://github.com/melodykimball/gsu-mui-react-template"
   },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
     ".": "./dist/index.js",
     "./AppLayout": "./dist/components/AppLayout/index.js",
     "./Button": "./dist/components/Button.js",
     "./ContactHelpDesk": "./dist/components/ContactHelpDesk.js",
-    "./LoadingSpinner": "./dist/components/LoadingSpinner/index.js",
-    "./SelectFormControl": "./dist/components/SelectFormControl/index.js",
+    "./LoadingSpinner": "./dist/components/LoadingSpinner.js",
+    "./SelectFormControl": "./dist/components/SelectFormControl.js",
     "./useAuthToken": "./dist/hooks/useAuthToken.js",
     "./useStorage": "./dist/hooks/useStorage.js",
-    "./AuthPage": "./dist/components/AppLayout/index.js",
+    "./AuthPage": "./dist/pages/AuthPage.js",
     "./ErrorPage": "./dist/pages/ErrorPage.js",
     "./LoginPage": "./dist/pages/LoginPage.js",
     "./NotFoundPage": "./dist/pages/NotFoundPage.js",

@@ -4,7 +4,8 @@ import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import createAppTheme from "./createAppTheme";
 
 const theme = createAppTheme();
-export default function AppThemeProvider(props: AppThemeProviderProps) {
+
+export function AppThemeProvider(props: AppThemeProviderProps) {
   const { theme: myTheme, enableColorScheme, children, ...myThemeProps } = props;
 
   return (
@@ -14,3 +15,5 @@ export default function AppThemeProvider(props: AppThemeProviderProps) {
     </ThemeProvider>
   );
 }
+
+export default AppThemeProvider;

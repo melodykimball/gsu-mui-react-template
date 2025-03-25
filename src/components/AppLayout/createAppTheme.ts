@@ -1,7 +1,7 @@
 import grey from "@mui/material/colors/grey";
 import { alpha, createTheme, type Theme, type Components } from "@mui/material/styles";
 
-export default function createAppTheme() {
+export function createAppTheme() {
   const defaultTheme = createTheme();
 
   return createTheme(defaultTheme, {
@@ -14,6 +14,8 @@ export default function createAppTheme() {
     },
   });
 }
+
+export default createAppTheme;
 
 function createButtonTheme({ palette }: Theme) {
   const buttonBorderColor = palette.mode === "light" ? "rgba(0, 0, 0, 0.23)" : "rgba(255, 255, 255, 0.23)";

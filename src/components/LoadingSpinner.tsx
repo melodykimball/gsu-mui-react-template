@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from "react";
-import "./LoadingSpinner.css";
+import "../assets/styles/LoadingSpinner.css";
 
-export default function LoadingSpinner(props: PropsWithChildren) {
+export function LoadingSpinner(props: PropsWithChildren) {
   return (
     <div className="loading-spinner">
       <div>
@@ -15,3 +15,5 @@ export default function LoadingSpinner(props: PropsWithChildren) {
     </div>
   );
 }
+
+export default LoadingSpinner;

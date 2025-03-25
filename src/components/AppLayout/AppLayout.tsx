@@ -3,9 +3,9 @@ import AppBody from "./AppBody";
 import AppFooter from "./AppFooter";
 import AppHeader from "./AppHeader";
 import AppThemeProvider from "./AppThemeProvider";
-import "./AppLayout.css";
+import "../../assets/styles/AppLayout.css";
 
-export default function AppLayout(props: AppLayoutProps) {
+export function AppLayout(props: AppLayoutProps) {
   return (
     <AppThemeProvider {...props.theme}>
       <AppHeader {...props.header}>{props.title}</AppHeader>
@@ -14,3 +14,5 @@ export default function AppLayout(props: AppLayoutProps) {
     </AppThemeProvider>
   );
 }
+
+export default AppLayout;

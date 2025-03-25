@@ -2,9 +2,9 @@ import type { AppHeaderProps } from "./types";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/images/logo.png";
 
-export default function AppHeader(props: AppHeaderProps) {
+export function AppHeader(props: AppHeaderProps) {
   const appBarProps: AppHeaderProps["appBar"] = {
     component: "header",
     role: "banner",
@@ -35,3 +35,5 @@ export default function AppHeader(props: AppHeaderProps) {
     </AppBar>
   );
 }
+
+export default AppHeader;

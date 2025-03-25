@@ -59,7 +59,7 @@ export default defineConfig({
           ])
       ),
       output: {
-        assetFileNames: "assets/[name][extname]",
+        assetFileNames: "assets/styles/[name][extname]",
         entryFileNames: function ({ facadeModuleId, name }) {
           const extname = facadeModuleId?.split(".")?.pop();
           if (extname === "ts" || extname === "tsx") {
@@ -73,7 +73,7 @@ export default defineConfig({
       },
       plugins: [
         copy({
-          assets: ["assets"],
+          assets: ["assets/images"],
         }),
       ],
     },

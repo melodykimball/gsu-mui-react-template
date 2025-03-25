@@ -13,7 +13,7 @@ const { copy, links } = {
   ],
 };
 
-export default function AppFooterLegal(props: AppFooterLegalProps) {
+export function AppFooterLegal(props: AppFooterLegalProps) {
   return (
     <Stack className="footer-legal" direction={{ xs: "column", sm: "row" }} spacing={2} {...props}>
       {links.map(([href, label]) => (
@@ -25,3 +25,5 @@ export default function AppFooterLegal(props: AppFooterLegalProps) {
     </Stack>
   );
 }
+
+export default AppFooterLegal;

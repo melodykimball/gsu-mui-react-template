@@ -16,7 +16,7 @@ const { name, address, phone } = {
   },
 };
 
-export default function AppFooterAddress(props: AppFooterAddressProps) {
+export function AppFooterAddress(props: AppFooterAddressProps) {
   return (
     <Stack className="footer-address" direction="row" spacing={2} {...props}>
       <span>{name}</span>
@@ -31,3 +31,5 @@ export default function AppFooterAddress(props: AppFooterAddressProps) {
     </Stack>
   );
 }
+
+export default AppFooterAddress;

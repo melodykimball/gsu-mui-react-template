@@ -1,7 +1,7 @@
 import type { AppBodyProps } from "./types";
 import Box from "@mui/material/Box";
 
-export default function AppBody(props: AppBodyProps) {
+export function AppBody(props: AppBodyProps) {
   const boxProps: AppBodyProps = {
     component: "main",
     role: "main",
@@ -16,3 +16,5 @@ export default function AppBody(props: AppBodyProps) {
 
   return <Box {...boxProps} />;
 }
+
+export default AppBody;
