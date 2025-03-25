@@ -35,6 +35,7 @@ export default defineConfig({
         "@mui/material/Select",
         "@mui/material/Stack",
         "@mui/material/styles",
+        "@mui/material/styles/ThemeProvider",
         "@mui/material/Toolbar",
         "@mui/material/Typography",
         "@tanstack/react-query",

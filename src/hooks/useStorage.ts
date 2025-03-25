@@ -1,5 +1,19 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 
+export function getStorageValue<T>(storage: Storage, key: string): T | null {
+  try {
+    const item = storage.getItem(key);
+    return item ? (JSON.parse(item) as T) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function setStorageValue<T>(storage: Storage, key: string, value: T): T {
+  storage.setItem(key, JSON.stringify(value));
+  return value;
+}
+
 export function useStorage<T>(
   key: string,
   initialValue: (() => T) | T,
@@ -21,17 +35,3 @@ export function useStorage<T>(
 }
 
 export default useStorage;
-
-function getStorageValue<T>(storage: Storage, key: string): T | null {
-  try {
-    const item = storage.getItem(key);
-    return item ? (JSON.parse(item) as T) : null;
-  } catch {
-    return null;
-  }
-}
-
-function setStorageValue<T>(storage: Storage, key: string, value: T): T {
-  storage.setItem(key, JSON.stringify(value));
-  return value;
-}

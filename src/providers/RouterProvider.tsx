@@ -4,8 +4,6 @@ import {
   type RouteObject,
   createBrowserRouter,
 } from "react-router";
-import { QueryClientProvider } from "./QueryClientProvider";
-import { AuthTokenProvider } from "./AuthTokenProvider";
 
 export type RouterProviderProps = {
   routes: () => RouteObject[];
@@ -18,11 +16,7 @@ export function RouterProvider(props: RouterProviderProps) {
     ...props.opts,
   });
 
-  return (
-    <QueryClientProvider>
-      <AuthTokenProvider>
-        <ReactRouterProvider router={router} />
-      </AuthTokenProvider>
-    </QueryClientProvider>
-  );
+  return <ReactRouterProvider router={router} />;
 }
+
+export default RouterProvider;

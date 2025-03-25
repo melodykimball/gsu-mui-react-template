@@ -1,2 +1,1 @@
-export * from "./LoadingSpinner";
-export { default } from "./LoadingSpinner";
+export { default, default as LoadingSpinner } from "./LoadingSpinner";

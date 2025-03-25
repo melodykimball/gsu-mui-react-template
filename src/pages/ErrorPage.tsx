@@ -16,13 +16,16 @@ export type RouteError = {
 
 export function ErrorPage(props: ErrorPageProps) {
   const routeError = useRouteError() as RouteError | null;
-  let message = "";
-
-  try {
-    message = getErrorMessage(props.error, routeError);
-  } catch {
-    message = "Sorry, an unexpected error has occurred.";
+  let message: string | null = null;
+  if (typeof props.error === "string") {
+    message = props.error;
+  } else if (props.error instanceof Error) {
+    message = props.error.message;
+  } else if (props.error instanceof String) {
+    message = props.error.toString();
   }
+  message ??= routeError ? routeError.statusText || routeError.message || null : null;
+  message ??= "Sorry, an unexpected error has occurred.";
 
   if (message === "Request failed with status code 401") {
     return <Navigate to={props.loginUri} />;
@@ -42,20 +45,3 @@ export function ErrorPage(props: ErrorPageProps) {
 }
 
 export default ErrorPage;
-
-function getErrorMessage(error: unknown, routeError: RouteError | null): string {
-  let errorMessage: string | null = null;
-  if (typeof error === "string") {
-    errorMessage = error;
-  } else if (error instanceof Error) {
-    errorMessage = error.message;
-  } else if (error instanceof String) {
-    errorMessage = error.toString();
-  }
-
-  const routeErrorText = routeError ? routeError.statusText || routeError.message || null : null;
-
-  const defaultErrorMessage = "Sorry, an unexpected error has occurred.";
-
-  return errorMessage ?? routeErrorText ?? defaultErrorMessage;
-}

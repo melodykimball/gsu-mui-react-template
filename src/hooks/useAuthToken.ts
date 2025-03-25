@@ -1,24 +1,21 @@
-import { useContext, useEffect } from "react";
-import { type AuthToken, defaultAuthToken, AuthTokenContext } from "../contexts/AuthTokenContext";
+import { createContext, useContext, useEffect } from "react";
+import updateAuthToken from "./updateAuthToken";
 import useStorage from "./useStorage";
 
-export function useAuthToken(): AuthToken {
-  return useContext(AuthTokenContext);
+export interface AuthToken {
+  token: string;
+  expiresOn: number;
+  isActive?: boolean | undefined;
 }
 
-export function useGetAuthToken(): AuthToken {
-  const [authToken, setAuthToken] = useStorage<AuthToken>("authToken", defaultAuthToken);
-  useEffect(() => updateAuthToken(authToken, setAuthToken), [authToken, setAuthToken]);
+const defaultAuthToken: AuthToken = {
+  token: "",
+  expiresOn: 0,
+};
 
-  return {
-    ...authToken,
-    isActive: isActive(authToken),
-  };
-}
+const context = createContext(defaultAuthToken);
 
-export default useAuthToken;
-
-function isActive(authToken: AuthToken): boolean | undefined {
+export function isActiveAuthToken(authToken: AuthToken): boolean | undefined {
   switch (true) {
     case new URL(window.location.href).searchParams.has("token"):
       return undefined;
@@ -29,32 +26,22 @@ function isActive(authToken: AuthToken): boolean | undefined {
   }
 }
 
-function updateAuthToken(
-  authToken: AuthToken,
-  setAuthToken: React.Dispatch<React.SetStateAction<AuthToken>>
-): () => void {
-  const url = new URL(window.location.href);
-  const token = url.searchParams.get("token");
-  const rightNow = new Date().getTime();
-
-  if (token !== null) {
-    url.searchParams.delete("token");
-    window.history.replaceState({}, document.title, url.toString());
-
-    setAuthToken({
-      token: token,
-      expiresOn: rightNow + 1800000,
-    });
-  } else if (authToken.expiresOn > rightNow) {
-    const timer = setTimeout(() => {
-      setAuthToken({
-        ...authToken,
-        expiresOn: authToken.expiresOn - 1,
-      });
-    }, Math.max(authToken.expiresOn - rightNow, 0));
-
-    return () => clearTimeout(timer);
-  }
-
-  return function () {};
+export function useAuthTokenProvider() {
+  return context.Provider;
 }
+
+export function useAuthTokenContext() {
+  return useContext(context);
+}
+
+export function useAuthToken(): AuthToken {
+  const [authToken, setAuthToken] = useStorage<AuthToken>("authToken", defaultAuthToken);
+  useEffect(() => updateAuthToken(authToken, setAuthToken), [authToken, setAuthToken]);
+
+  return {
+    ...authToken,
+    isActive: isActiveAuthToken(authToken),
+  };
+}
+
+export default useAuthToken;
