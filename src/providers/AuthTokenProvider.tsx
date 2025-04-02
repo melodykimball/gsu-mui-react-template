@@ -1,10 +1,10 @@
 import { type PropsWithChildren } from "react";
-import useAuthToken, { useAuthTokenProvider } from "../hooks/useAuthToken";
+import AuthTokenContext from "../contexts/AuthTokenContext";
+import useAuthToken from "../hooks/useAuthToken";
 
 export function AuthTokenProvider(props: PropsWithChildren) {
-  const Provider = useAuthTokenProvider();
   const authToken = useAuthToken();
-  return <Provider value={authToken}>{props.children}</Provider>;
+  return <AuthTokenContext.Provider value={authToken}>{props.children}</AuthTokenContext.Provider>;
 }
 
 export default AuthTokenProvider;
