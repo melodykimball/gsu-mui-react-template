@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
-import type { AuthToken } from "./useAuthToken";
+import type { AuthToken } from "./types";
 
 export function updateAuthToken(authToken: AuthToken, setAuthToken: Dispatch<SetStateAction<AuthToken>>): () => void {
   const url = new URL(window.location.href);
