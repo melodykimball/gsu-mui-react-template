@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import { useAuthTokenContext } from "../hooks/useAuthToken";
+import { type ReactNode, useContext } from "react";
+import AuthTokenContext from "../contexts/AuthTokenContext";
 
 export type AuthPageProps = {
   fallback?: ReactNode | undefined;
@@ -7,7 +7,7 @@ export type AuthPageProps = {
 };
 
 export function AuthPage(props: AuthPageProps) {
-  const authToken = useAuthTokenContext();
+  const authToken = useContext(AuthTokenContext);
   return authToken.isActive !== false ? props.children : props.fallback;
 }
 
