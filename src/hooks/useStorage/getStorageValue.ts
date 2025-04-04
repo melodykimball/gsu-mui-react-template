@@ -1,7 +1,11 @@
-export function getStorageValue<T>(key: string, storage: Storage = window.localStorage): T | null {
+import type { GetStorageValueProps } from "./types";
+
+export function getStorageValue<T>(props: GetStorageValueProps<T>): T | null {
+  const { key, parse, storage } = props;
+
   try {
     const item = storage.getItem(key);
-    return item ? (JSON.parse(item) as T) : null;
+    return item ? parse(item) : null;
   } catch {
     return null;
   }

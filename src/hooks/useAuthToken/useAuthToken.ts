@@ -6,7 +6,10 @@ import { type AuthToken } from "./types";
 import useStorage from "../useStorage";
 
 export function useAuthToken(): AuthToken {
-  const [authToken, setAuthToken] = useStorage<AuthToken>("authToken", defaultAuthToken);
+  const [authToken, setAuthToken] = useStorage<AuthToken>({
+    key: "authToken",
+    initialValue: defaultAuthToken,
+  });
   useEffect(() => updateAuthToken(authToken, setAuthToken), [authToken, setAuthToken]);
 
   return {
